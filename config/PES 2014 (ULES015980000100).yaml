@@ -1,0 +1,14 @@
+Gui:
+    Game Name : "Pro Evolution Soccer 2014 ULES015980000100"
+# You can get this offset with cheat engine
+Game Data:
+    Nation Start Address : 0x229BE74922C
+    National Kit Length: 456
+    Total National: 67
+    Clubes Kit Length: 648
+    Total Clubes: 130
+    Teams Table Offset: 0x229BD994A88 
+    #Teams Table Size: 3152 # Total National + Total Clubes * 16 
+    Teams Text Data Offset: 0x229BD992980
+Settings:
+    Process Name: "PPSSPPWindows64.exe"
