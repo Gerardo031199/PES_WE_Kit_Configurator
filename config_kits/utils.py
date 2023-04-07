@@ -27,5 +27,5 @@ def rgb_to_hex(rgb):
     # desde memoria a valor aceptable para ask color
     return '#%02x%02x%02x' % tuple(rgb)
 
-def check_value(min_value,value,max_value):
+def check_value(min_value, value, max_value):
     return min_value <= value <= max_value

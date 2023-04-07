@@ -62,9 +62,9 @@ class Gui(Tk):
         self.kit_combox = ttk.Combobox(self.frame1, state="disabled", values=["GA","PA","GB","PB"], )
         self.kit_combox.bind("<<ComboboxSelected>>", lambda event: self.set_kit_info(self.lbox_teams.get(0, "end").index(self.lbox_teams.get(self.lbox_teams.curselection()))))
         self.kit_combox.current(0)
-        self.kit_combox.grid(row=0, column=0, padx=5, pady=5, sticky="N")  
+        self.kit_combox.grid(row=0, column=0, sticky="NWE")  
         
-        self.lbox_teams = Listbox(self.frame1, exportselection=False, width=25, height=25)
+        self.lbox_teams = Listbox(self.frame1, exportselection=False, width=25, height=25)#selectmode="SINGLE"
         self.lbox_teams.grid(row=1, column=0, pady=5, sticky="NWE")
 
         self.scrollbar = ttk.Scrollbar(self.frame1, orient="vertical", command=self.lbox_teams.yview)
@@ -86,9 +86,9 @@ class Gui(Tk):
 
         Label(frame_01, text="Shirt Font").grid(column=0, row=1, padx=5, pady=5,  sticky="WE")
         
-        self.combox22 = ttk.Combobox(frame_01, values=["Off","On"],width=5,state="readonly")
-        self.combox22.bind("<<ComboboxSelected>>",  lambda event: self.update_kit_info())
-        self.combox22.grid(column=1, row=1, padx=10, pady=5, sticky="W")
+        self.font_shirt_status = ttk.Combobox(frame_01, values=["Off","On"],width=5,state="readonly")
+        self.font_shirt_status.bind("<<ComboboxSelected>>",  lambda event: self.update_kit_info())
+        self.font_shirt_status.grid(column=1, row=1, padx=10, pady=5, sticky="W")
         
         self.font_spb_size_var = IntVar()
         self.font_spb_size_var.set(0)
@@ -104,86 +104,86 @@ class Gui(Tk):
         self.y_position_font_shirt.bind('<Return>', lambda event: self.update_kit_info())
         self.y_position_font_shirt.grid(column=4, row=1, padx=10, pady=5, sticky="W")
 
-        self.font_combobox_curve = ttk.Combobox(frame_01, values=["Linear","Light","Medium","Maximum"],width=7,state="readonly")
-        self.font_combobox_curve.bind("<<ComboboxSelected>>",  lambda event: self.update_kit_info())
-        self.font_combobox_curve.grid(column=5, row=1, padx=10, pady=5, sticky="W")
+        self.font_curve_type = ttk.Combobox(frame_01, values=["Linear","Light","Medium","Maximum"],width=7,state="readonly")
+        self.font_curve_type.bind("<<ComboboxSelected>>",  lambda event: self.update_kit_info())
+        self.font_curve_type.grid(column=5, row=1, padx=10, pady=5, sticky="W")
 
         Label(frame_01, text="Front Number").grid(column=0, row=2, padx=5, pady=5, sticky="WE")
 
-        self.combox3 = ttk.Combobox(frame_01, values=["Off","On"],width=5,state="readonly")
-        self.combox3.bind("<<ComboboxSelected>>",  lambda event: self.update_kit_info())
-        self.combox3.grid(column=1, row=2, padx=10, pady=5, sticky="W")
+        self.front_number_status = ttk.Combobox(frame_01, values=["Off","On"],width=5,state="readonly")
+        self.front_number_status.bind("<<ComboboxSelected>>",  lambda event: self.update_kit_info())
+        self.front_number_status.grid(column=1, row=2, padx=10, pady=5, sticky="W")
 
-        self.front_number_spb_size_var = IntVar()
-        self.front_number_spb_size_var.set(0)
+        self.front_number_size_var = IntVar()
+        self.front_number_size_var.set(0)
 
-        self.front_number_spb_size = Spinbox(frame_01, textvariable=self.front_number_spb_size_var,  from_=0, to=22,command=self.update_kit_info, width=5)
-        self.front_number_spb_size.bind('<Return>', lambda event: self.update_kit_info())
-        self.front_number_spb_size.grid(column=2, row=2, padx=10, pady=5, sticky="W")
+        self.front_number_size = Spinbox(frame_01, textvariable=self.front_number_size_var,  from_=0, to=22,command=self.update_kit_info, width=5)
+        self.front_number_size.bind('<Return>', lambda event: self.update_kit_info())
+        self.front_number_size.grid(column=2, row=2, padx=10, pady=5, sticky="W")
 
-        self.x_posc_front_num_spb_var = IntVar()
-        self.x_posc_front_num_spb_var.set(0)
+        self.x_position_front_number_var = IntVar()
+        self.x_position_front_number_var.set(0)
 
-        self.x_posc_front_num_spb = Spinbox(frame_01, textvariable=self.x_posc_front_num_spb_var, from_=0, to=29, command=self.update_kit_info, width=5)
-        self.x_posc_front_num_spb.bind('<Return>', lambda event: self.update_kit_info())
-        self.x_posc_front_num_spb.grid(column=3, row=2, padx=10, pady=5, sticky="W")
+        self.x_position_front_number = Spinbox(frame_01, textvariable=self.x_position_front_number_var, from_=0, to=29, command=self.update_kit_info, width=5)
+        self.x_position_front_number.bind('<Return>', lambda event: self.update_kit_info())
+        self.x_position_front_number.grid(column=3, row=2, padx=10, pady=5, sticky="W")
 
-        self.y_posc_front_num_spb_var = IntVar()
-        self.y_posc_front_num_spb_var.set(0)
+        self.y_position_front_number_var = IntVar()
+        self.y_position_front_number_var.set(0)
 
-        self.y_posc_front_num_spb = Spinbox(frame_01, textvariable=self.y_posc_front_num_spb_var, from_=0, to=29,  command=self.update_kit_info, width=5)
-        self.y_posc_front_num_spb.bind('<Return>', lambda event: self.update_kit_info())
-        self.y_posc_front_num_spb.grid(column=4, row=2, padx=10, pady=5, sticky="W")
+        self.y_position_front_number = Spinbox(frame_01, textvariable=self.y_position_front_number_var, from_=0, to=29,  command=self.update_kit_info, width=5)
+        self.y_position_front_number.bind('<Return>', lambda event: self.update_kit_info())
+        self.y_position_front_number.grid(column=4, row=2, padx=10, pady=5, sticky="W")
 
         Label(frame_01, text="Back Number").grid(column=0, row=3, padx=5, pady=5, sticky="WE")
 
-        self.b_number_spb_size_var = IntVar()
-        self.b_number_spb_size_var.set(0)
+        self.back_number_size_var = IntVar()
+        self.back_number_size_var.set(0)
 
-        self.b_number_spb_size = Spinbox(frame_01, textvariable=self.b_number_spb_size_var, from_=0, to=31,  command=self.update_kit_info, width=5)
-        self.b_number_spb_size.bind('<Return>', lambda event: self.update_kit_info())
-        self.b_number_spb_size.grid(column=2, row=3, padx=10, pady=5, sticky="W")
+        self.back_number_size = Spinbox(frame_01, textvariable=self.back_number_size_var, from_=0, to=31,  command=self.update_kit_info, width=5)
+        self.back_number_size.bind('<Return>', lambda event: self.update_kit_info())
+        self.back_number_size.grid(column=2, row=3, padx=10, pady=5, sticky="W")
 
-        self.y_posc_num_back_spb_var = IntVar()
-        self.y_posc_num_back_spb_var.set(0)
+        self.y_position_number_back_var = IntVar()
+        self.y_position_number_back_var.set(0)
 
-        self.y_posc_num_back_spb = Spinbox(frame_01, textvariable=self.y_posc_num_back_spb_var, from_=0, to=18,  command=self.update_kit_info, width=5)
+        self.y_posc_num_back_spb = Spinbox(frame_01, textvariable=self.y_position_number_back_var, from_=0, to=18,  command=self.update_kit_info, width=5)
         self.y_posc_num_back_spb.bind('<Return>', lambda event: self.update_kit_info())
         self.y_posc_num_back_spb.grid(column=4, row=3, padx=10, pady=5, sticky="W")
 
         Label(frame_01, text="Short Number").grid(column=0, row=4, padx=5, pady=5, sticky="WE")
 
-        self.combox4 = ttk.Combobox(frame_01, values=["Off","Left","Right"],width=5,state="readonly")
-        self.combox4.bind("<<ComboboxSelected>>",  lambda event: self.update_kit_info())
-        self.combox4.grid(column=1, row=4, padx=10, pady=5, sticky="W")
+        self.shorts_number_status = ttk.Combobox(frame_01, values=["Off","Left","Right"],width=5,state="readonly")
+        self.shorts_number_status.bind("<<ComboboxSelected>>",  lambda event: self.update_kit_info())
+        self.shorts_number_status.grid(column=1, row=4, padx=10, pady=5, sticky="W")
 
-        self.short_number_spb_size_var = IntVar()
-        self.short_number_spb_size_var.set(0)
+        self.short_number_size_var = IntVar()
+        self.short_number_size_var.set(0)
 
-        self.short_number_spb_size = Spinbox(frame_01, textvariable=self.short_number_spb_size_var, from_=0, to=28,  command=self.update_kit_info, width=5)
-        self.short_number_spb_size.bind('<Return>', lambda event: self.update_kit_info())
-        self.short_number_spb_size.grid(column=2, row=4, padx=10, pady=5, sticky="W")
+        self.short_number_size = Spinbox(frame_01, textvariable=self.short_number_size_var, from_=0, to=28,  command=self.update_kit_info, width=5)
+        self.short_number_size.bind('<Return>', lambda event: self.update_kit_info())
+        self.short_number_size.grid(column=2, row=4, padx=10, pady=5, sticky="W")
 
-        self.x_posc_short_num_spb_var = IntVar()
-        self.x_posc_short_num_spb_var.set(0)
+        self.x_position_shorts_number_var = IntVar()
+        self.x_position_shorts_number_var.set(0)
 
-        self.x_posc_short_num_spb = Spinbox(frame_01, textvariable=self.x_posc_short_num_spb_var, from_=0, to=25,  command=self.update_kit_info, width=5)
-        self.x_posc_short_num_spb.bind('<Return>', lambda event: self.update_kit_info())
-        self.x_posc_short_num_spb.grid(column=3, row=4, padx=10, pady=5, sticky="W")
+        self.x_position_shorts_number = Spinbox(frame_01, textvariable=self.x_position_shorts_number_var, from_=0, to=25,  command=self.update_kit_info, width=5)
+        self.x_position_shorts_number.bind('<Return>', lambda event: self.update_kit_info())
+        self.x_position_shorts_number.grid(column=3, row=4, padx=10, pady=5, sticky="W")
 
-        self.y_posc_short_num_spb_var = IntVar()
-        self.y_posc_short_num_spb_var.set(0)
+        self.y_position_shorts_number_var = IntVar()
+        self.y_position_shorts_number_var.set(0)
 
-        self.y_posc_short_num_spb = Spinbox(frame_01, textvariable=self.y_posc_short_num_spb_var, from_=0, to=19,  command=self.update_kit_info, width=5)
-        self.y_posc_short_num_spb.bind('<Return>', lambda event: self.update_kit_info())
-        self.y_posc_short_num_spb.grid(column=4, row=4, padx=10, pady=5, sticky="W")
+        self.y_position_shorts_number = Spinbox(frame_01, textvariable=self.y_position_shorts_number_var, from_=0, to=19,  command=self.update_kit_info, width=5)
+        self.y_position_shorts_number.bind('<Return>', lambda event: self.update_kit_info())
+        self.y_position_shorts_number.grid(column=4, row=4, padx=10, pady=5, sticky="W")
         
         Label(frame_01, text="Overlay").grid(column=0, row=5, padx=5, pady=5, sticky="WE")
 
-        self.overlay_spb_var = IntVar()
-        self.overlay_spb_var.set(0)
+        self.overlay_type_var = IntVar()
+        self.overlay_type_var.set(0)
 
-        self.overlay_type = Spinbox(frame_01, textvariable=self.overlay_spb_var, from_=0, to=14,  command=self.update_kit_info, width=5)
+        self.overlay_type = Spinbox(frame_01, textvariable=self.overlay_type_var, from_=0, to=14,  command=self.update_kit_info, width=5)
         self.overlay_type.bind('<Return>', lambda event: self.update_kit_info())
         self.overlay_type.grid(column=1, row=5, padx=10, pady=5, sticky="W")
 
@@ -204,18 +204,18 @@ class Gui(Tk):
         self.y_position_short_sleeve_overlay.grid(column=4, row=7, padx=10, pady=5, sticky="W")
         
         Label(frame_01, text="Model").grid(column=0, row=8, padx=5, pady=5, sticky="WE")
-        self.model_spb_var = IntVar()
-        self.model_spb_var.set(0)
+        self.model_type_var = IntVar()
+        self.model_type_var.set(0)
 
-        self.model_tp_spb = Spinbox(frame_01, textvariable=self.model_spb_var, from_=0, to=154, command=self.update_kit_info, width=5)
-        self.model_tp_spb.bind('<Return>', lambda event: self.update_kit_info())
-        self.model_tp_spb.grid(column=1, row=8, padx=10, pady=5, sticky="W")
+        self.model_type = Spinbox(frame_01, textvariable=self.model_type_var, from_=0, to=154, command=self.update_kit_info, width=5)
+        self.model_type.bind('<Return>', lambda event: self.update_kit_info())
+        self.model_type.grid(column=1, row=8, padx=10, pady=5, sticky="W")
 
         Label(frame_01, text="License").grid(column=0, row=9, padx=5, pady=5, sticky="WE")
     
-        self.combox7 = ttk.Combobox(frame_01, values=["NL","LC"],width=5,state="readonly")
-        self.combox7.bind('<<ComboboxSelected>>',  lambda event: self.update_kit_info())
-        self.combox7.grid(column=1, row=9, padx=9, pady=5, sticky="W")
+        self.license_type = ttk.Combobox(frame_01, values=["NL","LC"],width=5,state="readonly")
+        self.license_type.bind('<<ComboboxSelected>>',  lambda event: self.update_kit_info())
+        self.license_type.grid(column=1, row=9, padx=9, pady=5, sticky="W")
 
         Label(frame_01, text="Radar Color").grid(column=0, row=10, padx=5, pady=5, sticky="WE")
         
@@ -243,6 +243,32 @@ class Gui(Tk):
 
         unlicense_btn = ttk.Button(frame_02, text="Unlicensed", command=lambda : self.set_license_to_all_team("NL"))
         unlicense_btn.grid(column=5, row=0, padx=10, pady=5)
+        
+    def scroll_to_match(self, event):
+        valor = event.keysym
+        indice = self.lbox_teams.curselection()
+        if indice:
+            indice = int(indice[0])
+        else:
+            indice = 0
+        encontrado = False
+        if valor.isalnum():
+            for i in range(indice, self.lbox_teams.size()):
+                if valor.lower() in self.lbox_teams.get(i).lower():
+                    self.lbox_teams.see(i)
+                    self.lbox_teams.selection_clear(0, "end")
+                    self.lbox_teams.selection_set(i)
+                    encontrado = True
+                    break
+            if not encontrado:
+                for i in range(indice, -1, -1):
+                    if valor.lower() in self.lbox_teams.get(i).lower():
+                        self.lbox_teams.see(i)
+                        self.lbox_teams.selection_clear(0, "end")
+                        self.lbox_teams.selection_set(i)
+                        encontrado = True
+                        break
+
         
     def create_config(self):
         self.my_config = Config()
@@ -307,7 +333,7 @@ class Gui(Tk):
                     j += 1
                 
                 sub_bytearray = teams_text_data[start_range:end_range].decode('utf-8')
-                list_teams.append(f"{i} {sub_bytearray}")
+                list_teams.append(sub_bytearray)
             
             self.lbox_teams.insert('end', *list_teams)
             self.lbox_teams.selectedindex = 0
@@ -414,13 +440,14 @@ class Gui(Tk):
             #self.kit_combox.current(0)            
             self.set_kit_info(self.team_id)
 
-    def set_kit_info(self, team_id):
+    def set_kit_info(self, team_id:int):
         if 0 <= team_id < self.total_national:
             kit_list = self.national_kits
         
         elif self.total_national <= team_id < self.total_teams:
             team_id -= self.total_national
             kit_list = self.club_kits
+
 
         kit_type = self.kit_combox.current()
         if kit_type == 0:
@@ -435,33 +462,34 @@ class Gui(Tk):
         elif kit_type == 3:
             variable = kit_list[team_id].PB
 
-        self.combox7.current(variable.license)
-        self.model_spb_var.set(variable.model_type)
+        self.license_type.current(variable.license_type)
+        self.model_type_var.set(variable.model_type)
 
-        self.combox22.current(variable.font_shirt)
+        self.font_shirt_status.current(variable.font_shirt_status)
         self.y_position_font_shirt_var.set(variable.y_position_font_shirt)
         
-        self.combox3.current(variable.front_number)
+        self.front_number_status.current(variable.front_number_status)
 
-        self.combox4.current(variable.shorts_number)
-        self.overlay_spb_var.set(variable.overlay_type)
+        self.shorts_number_status.current(variable.shorts_number_status)
+        self.overlay_type_var.set(variable.overlay_type)
         
         self.y_position_long_sleeve_overlay_var.set(variable.y_position_long_sleeve_overlay)
-        self.y_position_short_sleeve_overlay_var.set(variable.y_position_long_sleeve_overlay)
         
-        self.font_combobox_curve.current(variable.font_curve)
+        self.y_position_short_sleeve_overlay_var.set(variable.y_position_short_sleeve_overlay)
+        
+        self.font_curve_type.current(variable.font_curve_type)
         self.font_spb_size_var.set(variable.font_size)
         
-        self.b_number_spb_size_var.set(variable.number_size_back)
+        self.back_number_size_var.set(variable.number_size_back)
 
-        self.short_number_spb_size_var.set(variable.shorts_number_size)
-        self.front_number_spb_size_var.set(variable.front_number_size)
-        self.y_posc_num_back_spb_var.set(variable.y_position_back_number)
-        self.x_posc_front_num_spb_var.set(variable.x_position_front_number)
-        self.y_posc_front_num_spb_var.set(variable.y_position_front_number)
+        self.short_number_size_var.set(variable.shorts_number_size)
+        self.front_number_size_var.set(variable.front_number_size)
+        self.y_position_number_back_var.set(variable.y_position_back_number)
+        self.x_position_front_number_var.set(variable.x_position_front_number)
+        self.y_position_front_number_var.set(variable.y_position_front_number)
         
-        self.x_posc_short_num_spb_var.set(variable.x_position_shorts_number)
-        self.y_posc_short_num_spb_var.set(variable.y_position_shorts_number)
+        self.x_position_shorts_number_var.set(variable.x_position_shorts_number)
+        self.y_position_shorts_number_var.set(variable.y_position_shorts_number)
         
         self.btn_radar.configure(bg=variable.rgb_hex)
         self.colors_rgb_int_var.set(variable.rgb_hex.upper())
@@ -475,7 +503,7 @@ class Gui(Tk):
             messagebox.showerror(title=self.appname, message="You must first select a team from the list box")
             return 0
         try:
-            team_id = self.lbox_teams.get(0, "end").index(self.lbox_teams.get(self.lbox_teams.curselection()))
+            team_id:int = self.lbox_teams.get(0, "end").index(self.lbox_teams.get(self.lbox_teams.curselection()))
             
             if 0 <= team_id < self.total_national:
                 kit_list = self.national_kits
@@ -500,27 +528,27 @@ class Gui(Tk):
             elif kit_type == 3:
                 variable = kit_list[team_id].PB
 
-            variable.update_model_type(self.model_spb_var.get())
-            variable.update_license(self.combox7.get())
-            variable.update_font_shirt(self.combox22.current())
-            variable.update_y_position_font_shirt(self.y_position_font_shirt.get())
-            variable.update_front_number(self.combox3.current())
-            variable.update_shorts_number(self.combox4.current())
-            variable.update_overlay_type(self.overlay_spb_var.get())
-            variable.update_y_position_long_sleeve_overlay(self.y_position_long_sleeve_overlay_var.get())
+            variable.update_model_type(self.model_type_var.get())
+            variable.update_license(self.license_type.get())
+            variable.update_font_shirt(self.font_shirt_status.current())
+            variable.update_y_position_font_shirt(self.y_position_font_shirt_var.get())
+            variable.update_front_number(self.front_number_status.current())
+            variable.update_shorts_number(self.shorts_number_status.current())
+            variable.update_overlay_type(self.overlay_type_var.get())
             
+            variable.update_y_position_long_sleeve_overlay(self.y_position_long_sleeve_overlay_var.get())
             variable.update_y_position_short_sleeve_overlay(self.y_position_short_sleeve_overlay_var.get())
             
-            variable.update_font_curve(self.font_combobox_curve.current())
+            variable.update_font_curve(self.font_curve_type.current())
             variable.update_font_size(self.font_spb_size_var.get())
-            variable.update_number_size_back(self.b_number_spb_size_var.get())
-            variable.update_shorts_number_size(self.short_number_spb_size_var.get())
-            variable.update_front_number_size(self.front_number_spb_size_var.get())
-            variable.update_y_posc_num_back(self.y_posc_num_back_spb_var.get())
-            variable.update_x_posc_front_num(self.x_posc_front_num_spb_var.get())
-            variable.update_y_posc_front_num(self.y_posc_front_num_spb_var.get())
-            variable.update_x_posc_short_number(self.x_posc_short_num_spb_var.get())
-            variable.update_y_posc_short_number(self.y_posc_short_num_spb_var.get())
+            variable.update_number_size_back(self.back_number_size_var.get())
+            variable.update_shorts_number_size(self.short_number_size_var.get())
+            variable.update_front_number_size(self.front_number_size_var.get())
+            variable.update_y_position_back_number(self.y_position_number_back_var.get())
+            variable.update_x_position_front_number(self.x_position_front_number_var.get())
+            variable.update_y_position_front_number(self.y_position_front_number_var.get())
+            variable.update_x_position_shorts_number(self.x_position_shorts_number_var.get())
+            variable.update_y_position_shorts_number(self.y_position_shorts_number_var.get())
             
             variable.update_color_radar(self.colors_rgb_int_var.get())
             self.btn_radar.configure(bg=self.colors_rgb_int_var.get())
@@ -545,4 +573,5 @@ class Gui(Tk):
             self.destroy()
 
     def start(self):
+        self.bind("<KeyPress>", self.scroll_to_match)
         self.mainloop()

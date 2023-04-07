@@ -31,7 +31,7 @@ class Kit:
         """
         Carga la configuracion de nombre en la camiseta que tiene por default el kit
         """
-        self.font_shirt = self.data[54]
+        self.font_shirt_status = self.data[54]
 
     def update_font_shirt(self, new_value:int):
         """
@@ -44,7 +44,7 @@ class Kit:
         """
         Carga el font que tiene por default el kit
         """
-        self.font_curve = self.data[56]
+        self.font_curve_type = self.data[56]
 
     def update_font_curve(self, new_value:int):
         """
@@ -56,7 +56,7 @@ class Kit:
     def set_front_number(self):
         """
         """
-        self.front_number = self.data[58]
+        self.front_number_status = self.data[58]
 
     def update_front_number(self, new_value:int):
         """
@@ -67,7 +67,7 @@ class Kit:
     def set_shorts_number(self):
         """
         """
-        self.shorts_number = self.data[59]
+        self.shorts_number_status = self.data[59]
 
     def update_shorts_number(self, new_value:int):
         """
@@ -81,7 +81,7 @@ class Kit:
         """
         self.overlay_type = self.data[61]
 
-    def update_overlay(self, new_value:int):
+    def update_overlay_type(self, new_value:int):
         """
         Actualiza el model en el kit
         """
@@ -109,7 +109,7 @@ class Kit:
             raise ValueError(f"Overlay y coordinate must be between {min_value} and {max_value}")
         
     def set_y_position_short_sleeve_overlay(self):
-        self.y_position_short_sleeve_overlay = self.data[62]
+        self.y_position_short_sleeve_overlay = self.data[63]
 
     def update_y_position_short_sleeve_overlay(self, new_value:int):
         """
@@ -264,7 +264,7 @@ class Kit:
         min_value = 0
         max_value = 27
         if check_value(min_value,new_value,max_value):
-            self.data[67] = new_value
+            self.data[75] = new_value
             self.set_y_position_font_shirt()
         else:
             raise ValueError(f"Font shirt x coordinate must be between {min_value} and {max_value}")
@@ -295,7 +295,7 @@ class Kit:
             license = 0
         elif license == 1:
             license = 1
-        self.license = license
+        self.license_type = license
 
     def update_license(self, new_val:str):
         """
